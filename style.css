@@ -179,12 +179,12 @@ button:hover {
 
 .postal-group {
   display: flex;
-  align-items: flex-start;
+  align-items:center;
 }
 
-.postal-left,
-.postal-right {
-  flex: 1;
+.postal-left input,
+.postal-right input {
+  width: 140px;
 }
 
 .postal-separator {
