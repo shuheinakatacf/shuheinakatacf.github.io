@@ -27,6 +27,12 @@ body {
   font-weight: 500;
 }
 
+.page-description {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
 /* =========================
    フォーム全体
 ========================= */
