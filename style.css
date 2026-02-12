@@ -179,7 +179,7 @@ button:hover {
 
 .postal-group {
   display: inline-flex;
-  align-items:center;
+  align-items:flex-start;
 }
 
 .postal-left input,
@@ -207,3 +207,8 @@ button:hover {
   padding: 14px 6px;
 }
 
+.postal-left,
+.postal-right {
+  display: flex;
+  flex-direction: column;
+}
