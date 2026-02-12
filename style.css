@@ -179,7 +179,7 @@ button:hover {
 
 .postal-group {
   display: inline-flex;
-  align-items:flex-start;
+  align-items: center;
 }
 
 .postal-left input,
@@ -188,9 +188,8 @@ button:hover {
 }
 
 .postal-separator {
-  margin: 0 2px;
+  margin: 0 4px;
   font-size: 18px;
-  line-height: 48px;
 }
 
 .sub-guide {
