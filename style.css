@@ -160,3 +160,15 @@ button:hover {
   }
 
 }
+
+.sub-guide {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.sub-guide-wrapper {
+  margin-left: 200px;
+  margin-top: -15px;
+  margin-bottom: 20px;
+}
