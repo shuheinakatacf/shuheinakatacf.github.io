@@ -104,7 +104,7 @@ textarea:focus {
 }
 
 textarea {
-  width: 100%;
+  flex: 1;
   padding: 16px;
   border-radius: 10px;
   border: 2px solid #cfd8dc;
@@ -180,7 +180,6 @@ button:hover {
 .postal-group {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
 }
 
 .postal-left,
@@ -189,7 +188,7 @@ button:hover {
 }
 
 .postal-separator {
-  margin-top: 14px;
+  margin: 0 4px;
   font-size: 18px;
 }
 
