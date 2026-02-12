@@ -188,8 +188,9 @@ button:hover {
 }
 
 .postal-separator {
-  margin: 0 4px;
+  margin: 0 2px;
   font-size: 18px;
+  line-height: 48px;
 }
 
 .sub-guide {
@@ -201,3 +202,8 @@ button:hover {
 .small-guide {
   font-size: 11px;
 }
+
+.postal-group input {
+  padding: 14px 6px;
+}
+
