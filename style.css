@@ -62,9 +62,12 @@ label {
 
 /* 入力欄（ボックス型） */
 
-input,
-select {
+.form-group > input,
+.form-group > select,
+.form-group > textarea,
+.input-wrapper {
   flex: 1;
+}
   padding: 14px 16px;
   border-radius: 8px;
   border: 2px solid #cfd8dc;
