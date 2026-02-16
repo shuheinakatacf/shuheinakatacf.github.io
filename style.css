@@ -182,3 +182,13 @@ button:hover {
   }
 
 }
+
+.sub-guide-row {
+  display: flex;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.sub-guide-row > div:first-child {
+  width: 200px;   /* ラベル幅と同じ */
+}
