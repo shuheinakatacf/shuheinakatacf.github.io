@@ -220,3 +220,7 @@ button:hover {
 .name-group input {
   flex: 1;
 }
+
+.input-wrapper input {
+  width: 100%;
+}
