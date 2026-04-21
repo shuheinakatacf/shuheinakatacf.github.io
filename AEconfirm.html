@@ -58,24 +58,6 @@
     </tr>
   </table>
 
-  <!-- Salesforceへ実際に送信する隠しフォーム -->
-  <form id="salesforceForm"
-        action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DH30000008kpW"
-        method="POST">
-    <input type="hidden" name="oid"                value="00DH30000008kpW">
-    <input type="hidden" name="retURL"             value="http://">
-    <input type="hidden" id="sf_last_name"         name="last_name">
-    <input type="hidden" id="sf_first_name"        name="first_name">
-    <input type="hidden" id="sf_furigana"          name="00NH300000AJdOn">
-    <input type="hidden" id="sf_company"           name="company">
-    <input type="hidden" id="sf_pharmacy"          name="00NH300000AJdOt">
-    <input type="hidden" id="sf_title"             name="title">
-    <input type="hidden" id="sf_state"             name="state">
-    <input type="hidden" id="sf_phone"             name="phone">
-    <input type="hidden" id="sf_email"             name="email">
-    <input type="hidden" id="sf_inquiry"           name="00NH300000AJdOl">
-  </form>
-
   <div class="button-area confirm-buttons">
     <button type="button" class="btn-submit" onclick="submitForm()">送信する</button>
     <button type="button" class="btn-back"   onclick="goBack()">入力内容を修正する</button>
@@ -117,8 +99,9 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 function submitForm() {
-  localStorage.removeItem('formData'); // 送信後にデータ削除
-  document.getElementById('salesforceForm').submit();
+  localStorage.removeItem('formData');
+  // ここにAccountEngagementの送信処理を追加予定
+  alert('送信しました');
 }
 
 function goBack() {
