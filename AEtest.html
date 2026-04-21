@@ -21,11 +21,9 @@
 
     <div class="form-group">
       <label>お名前</label>
-      <div class="input-wrapper name-group">
-        <input id="last_name" name="last_name" maxlength="80" type="text"
-               placeholder="姓">
-        <input id="first_name" name="first_name" maxlength="40" type="text"
-               placeholder="名">
+      <div class="input-wrapper">
+        <input id="name" name="name" maxlength="80" type="text"
+               placeholder="お名前を全角でご記入ください">
       </div>
     </div>
 
@@ -135,8 +133,7 @@
 <script>
 function goToConfirm() {
   const data = {
-    last_name: document.getElementById('last_name').value,
-    first_name: document.getElementById('first_name').value,
+    name: document.getElementById('name').value,
     furigana: document.getElementById('00NH300000AJdOn').value,
     company: document.getElementById('company').value,
     pharmacy: document.getElementById('00NH300000AJdOt').value,
@@ -157,8 +154,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const saved = localStorage.getItem('formData');
     if (saved) {
       const data = JSON.parse(saved);
-      document.getElementById('last_name').value       = data.last_name  || '';
-      document.getElementById('first_name').value      = data.first_name || '';
+      document.getElementById('name').value           = data.name      || '';
       document.getElementById('00NH300000AJdOn').value = data.furigana   || '';
       document.getElementById('company').value         = data.company    || '';
       document.getElementById('00NH300000AJdOt').value = data.pharmacy   || '';
