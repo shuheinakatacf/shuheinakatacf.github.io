@@ -17,21 +17,20 @@
 
 <div class="wrapper">
 
-  <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DH30000008kpW"
-        method="POST">
+  <form id="contactForm">
 
     <input type="hidden" name="oid" value="00DH30000008kpW">
     <input type="hidden" name="retURL" value="http://">
 
-<div class="form-group">
-  <label>お名前</label>
-  <div class="input-wrapper name-group">
-    <input id="last_name" name="last_name" maxlength="80" type="text"
-           placeholder="姓">
-    <input id="first_name" name="first_name" maxlength="40" type="text"
-           placeholder="名">
-  </div>
-</div>
+    <div class="form-group">
+      <label>お名前</label>
+      <div class="input-wrapper name-group">
+        <input id="last_name" name="last_name" maxlength="80" type="text"
+               placeholder="姓">
+        <input id="first_name" name="first_name" maxlength="40" type="text"
+               placeholder="名">
+      </div>
+    </div>
 
     <div class="form-group">
       <label>フリガナ</label>
@@ -130,11 +129,48 @@
     </div>
 
     <div class="button-area">
-      <button type="submit">送信する</button>
+      <button type="button" onclick="goToConfirm()">入力内容を確認する</button>
     </div>
 
   </form>
 </div>
+
+<script>
+function goToConfirm() {
+  const data = {
+    last_name:           document.getElementById('last_name').value,
+    first_name:          document.getElementById('first_name').value,
+    furigana:            document.getElementById('00NH300000AJdOn').value,
+    company:             document.getElementById('company').value,
+    pharmacy:            document.getElementById('00NH300000AJdOt').value,
+    title:               document.getElementById('title').value,
+    state:               document.getElementById('state').value,
+    phone:               document.getElementById('phone').value,
+    email:               document.getElementById('email').value,
+    inquiry:             document.getElementById('00NH300000AJdOl').value
+  };
+  localStorage.setItem('formData', JSON.stringify(data));
+  window.location.href = 'AEconfirm.html';
+}
+
+// 戻ってきたとき用：localStorageの値をフォームに復元
+window.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('formData');
+  if (saved) {
+    const data = JSON.parse(saved);
+    document.getElementById('last_name').value           = data.last_name  || '';
+    document.getElementById('first_name').value          = data.first_name || '';
+    document.getElementById('00NH300000AJdOn').value     = data.furigana   || '';
+    document.getElementById('company').value             = data.company    || '';
+    document.getElementById('00NH300000AJdOt').value     = data.pharmacy   || '';
+    document.getElementById('title').value               = data.title      || '';
+    document.getElementById('state').value               = data.state      || '';
+    document.getElementById('phone').value               = data.phone      || '';
+    document.getElementById('email').value               = data.email      || '';
+    document.getElementById('00NH300000AJdOl').value     = data.inquiry    || '';
+  }
+});
+</script>
 
 </body>
 </html>
