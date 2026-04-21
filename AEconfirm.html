@@ -122,9 +122,8 @@ function submitForm() {
 }
 
 function goBack() {
-  // 「修正する」で戻ってきたことをフラグで伝える
-  sessionStorage.setItem('fromConfirm', 'true');
-  window.location.href = 'AEtest.html';
+  // URLパラメータ ?back=true で「修正して戻ってきた」と伝える
+  window.location.href = 'AEtest.html?back=true';
 }
 </script>
 
