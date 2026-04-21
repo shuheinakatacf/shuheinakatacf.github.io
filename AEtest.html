@@ -138,36 +138,43 @@
 <script>
 function goToConfirm() {
   const data = {
-    last_name:           document.getElementById('last_name').value,
-    first_name:          document.getElementById('first_name').value,
-    furigana:            document.getElementById('00NH300000AJdOn').value,
-    company:             document.getElementById('company').value,
-    pharmacy:            document.getElementById('00NH300000AJdOt').value,
-    title:               document.getElementById('title').value,
-    state:               document.getElementById('state').value,
-    phone:               document.getElementById('phone').value,
-    email:               document.getElementById('email').value,
-    inquiry:             document.getElementById('00NH300000AJdOl').value
+    last_name: document.getElementById('last_name').value,
+    first_name: document.getElementById('first_name').value,
+    furigana: document.getElementById('00NH300000AJdOn').value,
+    company: document.getElementById('company').value,
+    pharmacy: document.getElementById('00NH300000AJdOt').value,
+    title: document.getElementById('title').value,
+    state: document.getElementById('state').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value,
+    inquiry: document.getElementById('00NH300000AJdOl').value
   };
   localStorage.setItem('formData', JSON.stringify(data));
   window.location.href = 'AEconfirm.html';
 }
 
-// 戻ってきたとき用：localStorageの値をフォームに復元
 window.addEventListener('DOMContentLoaded', function() {
-  const saved = localStorage.getItem('formData');
-  if (saved) {
-    const data = JSON.parse(saved);
-    document.getElementById('last_name').value           = data.last_name  || '';
-    document.getElementById('first_name').value          = data.first_name || '';
-    document.getElementById('00NH300000AJdOn').value     = data.furigana   || '';
-    document.getElementById('company').value             = data.company    || '';
-    document.getElementById('00NH300000AJdOt').value     = data.pharmacy   || '';
-    document.getElementById('title').value               = data.title      || '';
-    document.getElementById('state').value               = data.state      || '';
-    document.getElementById('phone').value               = data.phone      || '';
-    document.getElementById('email').value               = data.email      || '';
-    document.getElementById('00NH300000AJdOl').value     = data.inquiry    || '';
+  // sessionStorageに「確認ページから戻ってきた」フラグがある場合のみ復元
+  const fromConfirm = sessionStorage.getItem('fromConfirm');
+  if (fromConfirm === 'true') {
+    sessionStorage.removeItem('fromConfirm');
+    const saved = localStorage.getItem('formData');
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('last_name').value       = data.last_name  || '';
+      document.getElementById('first_name').value      = data.first_name || '';
+      document.getElementById('00NH300000AJdOn').value = data.furigana   || '';
+      document.getElementById('company').value         = data.company    || '';
+      document.getElementById('00NH300000AJdOt').value = data.pharmacy   || '';
+      document.getElementById('title').value           = data.title      || '';
+      document.getElementById('state').value           = data.state      || '';
+      document.getElementById('phone').value           = data.phone      || '';
+      document.getElementById('email').value           = data.email      || '';
+      document.getElementById('00NH300000AJdOl').value = data.inquiry    || '';
+    }
+  } else {
+    // 直接アクセスの場合はlocalStorageをクリアして空フォームを表示
+    localStorage.removeItem('formData');
   }
 });
 </script>
