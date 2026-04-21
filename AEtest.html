@@ -2,128 +2,174 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>入力内容の確認</title>
+  <title>お問い合わせフォーム</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style_confirm.css">
 </head>
 <body>
 
 <!-- タイトル帯 -->
 <div class="page-header">
-  <h1>入力内容の確認</h1>
+  <h1>お問い合わせフォーム</h1>
   <p class="page-description">
-    以下の内容でよろしければ「送信する」ボタンを押してください。
+    ※本ページは Salesforce Web-to-リード機能のデモ用フォームです。送信された情報はテスト環境に登録されます。
   </p>
 </div>
 
 <div class="wrapper">
 
-  <!-- 確認テーブル -->
-  <table class="confirm-table">
-    <tr>
-      <th>お名前</th>
-      <td id="c_name"></td>
-    </tr>
-    <tr>
-      <th>フリガナ</th>
-      <td id="c_furigana"></td>
-    </tr>
-    <tr>
-      <th>会社名</th>
-      <td id="c_company"></td>
-    </tr>
-    <tr>
-      <th>薬局名</th>
-      <td id="c_pharmacy"></td>
-    </tr>
-    <tr>
-      <th>役職名</th>
-      <td id="c_title"></td>
-    </tr>
-    <tr>
-      <th>都道府県</th>
-      <td id="c_state"></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td id="c_phone"></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td id="c_email"></td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td id="c_inquiry" class="inquiry-cell"></td>
-    </tr>
-  </table>
+  <form id="contactForm">
 
-  <!-- Salesforceへ実際に送信する隠しフォーム -->
-  <form id="salesforceForm"
-        action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DH30000008kpW"
-        method="POST">
-    <input type="hidden" name="oid"                value="00DH30000008kpW">
-    <input type="hidden" name="retURL"             value="http://">
-    <input type="hidden" id="sf_last_name"         name="last_name">
-    <input type="hidden" id="sf_first_name"        name="first_name">
-    <input type="hidden" id="sf_furigana"          name="00NH300000AJdOn">
-    <input type="hidden" id="sf_company"           name="company">
-    <input type="hidden" id="sf_pharmacy"          name="00NH300000AJdOt">
-    <input type="hidden" id="sf_title"             name="title">
-    <input type="hidden" id="sf_state"             name="state">
-    <input type="hidden" id="sf_phone"             name="phone">
-    <input type="hidden" id="sf_email"             name="email">
-    <input type="hidden" id="sf_inquiry"           name="00NH300000AJdOl">
+    <input type="hidden" name="oid" value="00DH30000008kpW">
+    <input type="hidden" name="retURL" value="http://">
+
+    <div class="form-group">
+      <label>お名前</label>
+      <div class="input-wrapper name-group">
+        <input id="last_name" name="last_name" maxlength="80" type="text"
+               placeholder="姓">
+        <input id="first_name" name="first_name" maxlength="40" type="text"
+               placeholder="名">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>フリガナ</label>
+      <input id="00NH300000AJdOn" name="00NH300000AJdOn" maxlength="255" type="text"
+             placeholder="お名前を全角カタカナでご記入ください">
+    </div>
+
+    <div class="form-group">
+      <label>会社名</label>
+      <input id="company" name="company" maxlength="40" type="text"
+             placeholder="会社名を全角でご記入ください">
+    </div>
+
+    <div class="form-group">
+      <label>薬局名</label>
+      <input id="00NH300000AJdOt" name="00NH300000AJdOt" maxlength="255" type="text"
+             placeholder="薬局名をご記入ください">
+    </div>
+
+    <div class="form-group">
+      <label>役職名</label>
+      <input id="title" name="title" maxlength="40" type="text"
+             placeholder="役職名をご記入ください">
+    </div>
+
+    <div class="form-group">
+      <label>都道府県</label>
+      <select id="state" name="state">
+        <option value="">選択してください</option>
+        <option value="北海道">北海道</option>
+        <option value="青森県">青森県</option>
+        <option value="岩手県">岩手県</option>
+        <option value="宮城県">宮城県</option>
+        <option value="秋田県">秋田県</option>
+        <option value="山形県">山形県</option>
+        <option value="福島県">福島県</option>
+        <option value="茨城県">茨城県</option>
+        <option value="栃木県">栃木県</option>
+        <option value="群馬県">群馬県</option>
+        <option value="埼玉県">埼玉県</option>
+        <option value="千葉県">千葉県</option>
+        <option value="東京都">東京都</option>
+        <option value="神奈川県">神奈川県</option>
+        <option value="新潟県">新潟県</option>
+        <option value="富山県">富山県</option>
+        <option value="石川県">石川県</option>
+        <option value="福井県">福井県</option>
+        <option value="山梨県">山梨県</option>
+        <option value="長野県">長野県</option>
+        <option value="岐阜県">岐阜県</option>
+        <option value="静岡県">静岡県</option>
+        <option value="愛知県">愛知県</option>
+        <option value="三重県">三重県</option>
+        <option value="滋賀県">滋賀県</option>
+        <option value="京都府">京都府</option>
+        <option value="大阪府">大阪府</option>
+        <option value="兵庫県">兵庫県</option>
+        <option value="奈良県">奈良県</option>
+        <option value="和歌山県">和歌山県</option>
+        <option value="鳥取県">鳥取県</option>
+        <option value="島根県">島根県</option>
+        <option value="岡山県">岡山県</option>
+        <option value="広島県">広島県</option>
+        <option value="山口県">山口県</option>
+        <option value="徳島県">徳島県</option>
+        <option value="香川県">香川県</option>
+        <option value="愛媛県">愛媛県</option>
+        <option value="高知県">高知県</option>
+        <option value="福岡県">福岡県</option>
+        <option value="佐賀県">佐賀県</option>
+        <option value="長崎県">長崎県</option>
+        <option value="熊本県">熊本県</option>
+        <option value="大分県">大分県</option>
+        <option value="宮崎県">宮崎県</option>
+        <option value="鹿児島県">鹿児島県</option>
+        <option value="沖縄県">沖縄県</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>電話番号</label>
+      <input id="phone" name="phone" maxlength="40" type="text"
+             placeholder="電話番号をハイフンなし、半角でご記入ください">
+    </div>
+
+    <div class="form-group">
+      <label>メールアドレス</label>
+      <input id="email" name="email" maxlength="80" type="email"
+             placeholder="メールアドレスを半角でご記入ください">
+    </div>
+
+    <div class="form-group">
+      <label>お問い合わせ内容</label>
+      <textarea id="00NH300000AJdOl" name="00NH300000AJdOl" rows="5"
+                placeholder="お問い合わせ内容をご記入ください"></textarea>
+    </div>
+
+    <div class="button-area">
+      <button type="button" onclick="goToConfirm()">入力内容を確認する</button>
+    </div>
+
   </form>
-
-  <div class="button-area confirm-buttons">
-    <button type="button" class="btn-submit" onclick="submitForm()">送信する</button>
-    <button type="button" class="btn-back"   onclick="goBack()">入力内容を修正する</button>
-  </div>
-
 </div>
 
 <script>
+function goToConfirm() {
+  const data = {
+    last_name:           document.getElementById('last_name').value,
+    first_name:          document.getElementById('first_name').value,
+    furigana:            document.getElementById('00NH300000AJdOn').value,
+    company:             document.getElementById('company').value,
+    pharmacy:            document.getElementById('00NH300000AJdOt').value,
+    title:               document.getElementById('title').value,
+    state:               document.getElementById('state').value,
+    phone:               document.getElementById('phone').value,
+    email:               document.getElementById('email').value,
+    inquiry:             document.getElementById('00NH300000AJdOl').value
+  };
+  localStorage.setItem('formData', JSON.stringify(data));
+  window.location.href = 'AEconfirm.html';
+}
+
+// 戻ってきたとき用：localStorageの値をフォームに復元
 window.addEventListener('DOMContentLoaded', function() {
   const saved = localStorage.getItem('formData');
-  if (!saved) {
-    // データがなければ入力フォームへ戻す
-    window.location.href = 'AEtest.html';
-    return;
+  if (saved) {
+    const data = JSON.parse(saved);
+    document.getElementById('last_name').value           = data.last_name  || '';
+    document.getElementById('first_name').value          = data.first_name || '';
+    document.getElementById('00NH300000AJdOn').value     = data.furigana   || '';
+    document.getElementById('company').value             = data.company    || '';
+    document.getElementById('00NH300000AJdOt').value     = data.pharmacy   || '';
+    document.getElementById('title').value               = data.title      || '';
+    document.getElementById('state').value               = data.state      || '';
+    document.getElementById('phone').value               = data.phone      || '';
+    document.getElementById('email').value               = data.email      || '';
+    document.getElementById('00NH300000AJdOl').value     = data.inquiry    || '';
   }
-  const data = JSON.parse(saved);
-
-  document.getElementById('c_name').textContent     = (data.last_name || '') + ' ' + (data.first_name || '');
-  document.getElementById('c_furigana').textContent = data.furigana  || '';
-  document.getElementById('c_company').textContent  = data.company   || '';
-  document.getElementById('c_pharmacy').textContent = data.pharmacy  || '';
-  document.getElementById('c_title').textContent    = data.title     || '';
-  document.getElementById('c_state').textContent    = data.state     || '';
-  document.getElementById('c_phone').textContent    = data.phone     || '';
-  document.getElementById('c_email').textContent    = data.email     || '';
-  document.getElementById('c_inquiry').textContent  = data.inquiry   || '';
-
-  // 隠しフォームにセット
-  document.getElementById('sf_last_name').value  = data.last_name  || '';
-  document.getElementById('sf_first_name').value = data.first_name || '';
-  document.getElementById('sf_furigana').value   = data.furigana   || '';
-  document.getElementById('sf_company').value    = data.company    || '';
-  document.getElementById('sf_pharmacy').value   = data.pharmacy   || '';
-  document.getElementById('sf_title').value      = data.title      || '';
-  document.getElementById('sf_state').value      = data.state      || '';
-  document.getElementById('sf_phone').value      = data.phone      || '';
-  document.getElementById('sf_email').value      = data.email      || '';
-  document.getElementById('sf_inquiry').value    = data.inquiry    || '';
 });
-
-function submitForm() {
-  localStorage.removeItem('formData'); // 送信後にデータ削除
-  document.getElementById('salesforceForm').submit();
-}
-
-function goBack() {
-  window.location.href = 'AEtest.html';
-}
 </script>
 
 </body>
