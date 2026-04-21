@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>入力内容の確認</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_confirm.css">
+</head>
+<body>
+
+<!-- タイトル帯 -->
+<div class="page-header">
+  <h1>入力内容の確認</h1>
+  <p class="page-description">
+    以下の内容でよろしければ「送信する」ボタンを押してください。
+  </p>
+</div>
+
+<div class="wrapper">
+
+  <!-- 確認テーブル -->
+  <table class="confirm-table">
+    <tr>
+      <th>お名前</th>
+      <td id="c_name"></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td id="c_furigana"></td>
+    </tr>
+    <tr>
+      <th>会社名</th>
+      <td id="c_company"></td>
+    </tr>
+    <tr>
+      <th>薬局名</th>
+      <td id="c_pharmacy"></td>
+    </tr>
+    <tr>
+      <th>役職名</th>
+      <td id="c_title"></td>
+    </tr>
+    <tr>
+      <th>都道府県</th>
+      <td id="c_state"></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td id="c_phone"></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td id="c_email"></td>
+    </tr>
+    <tr>
+      <th>お問い合わせ内容</th>
+      <td id="c_inquiry" class="inquiry-cell"></td>
+    </tr>
+  </table>
+
+  <!-- Salesforceへ実際に送信する隠しフォーム -->
+  <form id="salesforceForm"
+        action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DH30000008kpW"
+        method="POST">
+    <input type="hidden" name="oid"                value="00DH30000008kpW">
+    <input type="hidden" name="retURL"             value="http://">
+    <input type="hidden" id="sf_last_name"         name="last_name">
+    <input type="hidden" id="sf_first_name"        name="first_name">
+    <input type="hidden" id="sf_furigana"          name="00NH300000AJdOn">
+    <input type="hidden" id="sf_company"           name="company">
+    <input type="hidden" id="sf_pharmacy"          name="00NH300000AJdOt">
+    <input type="hidden" id="sf_title"             name="title">
+    <input type="hidden" id="sf_state"             name="state">
+    <input type="hidden" id="sf_phone"             name="phone">
+    <input type="hidden" id="sf_email"             name="email">
+    <input type="hidden" id="sf_inquiry"           name="00NH300000AJdOl">
+  </form>
+
+  <div class="button-area confirm-buttons">
+    <button type="button" class="btn-submit" onclick="submitForm()">送信する</button>
+    <button type="button" class="btn-back"   onclick="goBack()">入力内容を修正する</button>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('formData');
+  if (!saved) {
+    // データがなければ入力フォームへ戻す
+    window.location.href = 'AEtest.html';
+    return;
+  }
+  const data = JSON.parse(saved);
+
+  document.getElementById('c_name').textContent     = (data.last_name || '') + ' ' + (data.first_name || '');
+  document.getElementById('c_furigana').textContent = data.furigana  || '';
+  document.getElementById('c_company').textContent  = data.company   || '';
+  document.getElementById('c_pharmacy').textContent = data.pharmacy  || '';
+  document.getElementById('c_title').textContent    = data.title     || '';
+  document.getElementById('c_state').textContent    = data.state     || '';
+  document.getElementById('c_phone').textContent    = data.phone     || '';
+  document.getElementById('c_email').textContent    = data.email     || '';
+  document.getElementById('c_inquiry').textContent  = data.inquiry   || '';
+
+  // 隠しフォームにセット
+  document.getElementById('sf_last_name').value  = data.last_name  || '';
+  document.getElementById('sf_first_name').value = data.first_name || '';
+  document.getElementById('sf_furigana').value   = data.furigana   || '';
+  document.getElementById('sf_company').value    = data.company    || '';
+  document.getElementById('sf_pharmacy').value   = data.pharmacy   || '';
+  document.getElementById('sf_title').value      = data.title      || '';
+  document.getElementById('sf_state').value      = data.state      || '';
+  document.getElementById('sf_phone').value      = data.phone      || '';
+  document.getElementById('sf_email').value      = data.email      || '';
+  document.getElementById('sf_inquiry').value    = data.inquiry    || '';
+});
+
+function submitForm() {
+  localStorage.removeItem('formData'); // 送信後にデータ削除
+  document.getElementById('salesforceForm').submit();
+}
+
+function goBack() {
+  window.location.href = 'AEtest.html';
+}
+</script>
+
+</body>
+</html>
