@@ -154,10 +154,9 @@ function goToConfirm() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-  // sessionStorageに「確認ページから戻ってきた」フラグがある場合のみ復元
-  const fromConfirm = sessionStorage.getItem('fromConfirm');
-  if (fromConfirm === 'true') {
-    sessionStorage.removeItem('fromConfirm');
+  // URLに ?back=true がついている場合のみ入力内容を復元
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('back') === 'true') {
     const saved = localStorage.getItem('formData');
     if (saved) {
       const data = JSON.parse(saved);
