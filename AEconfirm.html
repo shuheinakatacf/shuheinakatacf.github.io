@@ -38,15 +38,15 @@
     </tr>
     <tr>
       <th>役職名</th>
-      <td id="c_title"></td>
+      <td id="c_position"></td>
     </tr>
     <tr>
       <th>都道府県</th>
-      <td id="c_state"></td>
+      <td id="c_pref"></td>
     </tr>
     <tr>
       <th>電話番号</th>
-      <td id="c_phone"></td>
+      <td id="c_tel"></td>
     </tr>
     <tr>
       <th>メールアドレス</th>
@@ -54,9 +54,24 @@
     </tr>
     <tr>
       <th>お問い合わせ内容</th>
-      <td id="c_inquiry" class="inquiry-cell"></td>
+      <td id="c_message" class="inquiry-cell"></td>
     </tr>
   </table>
+
+  <!-- AccountEngagementへ送信する隠しフォーム -->
+  <form id="aeForm"
+        action="http://go.pardot.com/l/1123063/2026-04-21/24xmn41"
+        method="post">
+    <input type="hidden" id="sf_your_name"     name="your_name">
+    <input type="hidden" id="sf_your_kana"     name="your_kana">
+    <input type="hidden" id="sf_company"       name="company">
+    <input type="hidden" id="sf_pharmacy_name" name="pharmacy_name">
+    <input type="hidden" id="sf_position"      name="position">
+    <input type="hidden" id="sf_pref"          name="pref">
+    <input type="hidden" id="sf_tel"           name="tel">
+    <input type="hidden" id="sf_email"         name="email">
+    <input type="hidden" id="sf_message"       name="message">
+  </form>
 
   <div class="button-area confirm-buttons">
     <button type="button" class="btn-submit" onclick="submitForm()">送信する</button>
@@ -69,43 +84,40 @@
 window.addEventListener('DOMContentLoaded', function() {
   const saved = localStorage.getItem('formData');
   if (!saved) {
-    // データがなければ入力フォームへ戻す
     window.location.href = 'AEtest.html';
     return;
   }
   const data = JSON.parse(saved);
 
-  document.getElementById('c_name').textContent     = data.name      || '';
-  document.getElementById('c_furigana').textContent = data.furigana  || '';
-  document.getElementById('c_company').textContent  = data.company   || '';
-  document.getElementById('c_pharmacy').textContent = data.pharmacy  || '';
-  document.getElementById('c_title').textContent    = data.title     || '';
-  document.getElementById('c_state').textContent    = data.state     || '';
-  document.getElementById('c_phone').textContent    = data.phone     || '';
-  document.getElementById('c_email').textContent    = data.email     || '';
-  document.getElementById('c_inquiry').textContent  = data.inquiry   || '';
+  // 確認テーブルに表示
+  document.getElementById('c_name').textContent     = data.your_name     || '';
+  document.getElementById('c_furigana').textContent = data.your_kana     || '';
+  document.getElementById('c_company').textContent  = data.company       || '';
+  document.getElementById('c_pharmacy').textContent = data.pharmacy_name || '';
+  document.getElementById('c_position').textContent = data.position      || '';
+  document.getElementById('c_pref').textContent     = data.pref          || '';
+  document.getElementById('c_tel').textContent      = data.tel           || '';
+  document.getElementById('c_email').textContent    = data.email         || '';
+  document.getElementById('c_message').textContent  = data.message       || '';
 
   // 隠しフォームにセット
-  document.getElementById('sf_last_name').value  = data.last_name  || '';
-  document.getElementById('sf_first_name').value = data.first_name || '';
-  document.getElementById('sf_furigana').value   = data.furigana   || '';
-  document.getElementById('sf_company').value    = data.company    || '';
-  document.getElementById('sf_pharmacy').value   = data.pharmacy   || '';
-  document.getElementById('sf_title').value      = data.title      || '';
-  document.getElementById('sf_state').value      = data.state      || '';
-  document.getElementById('sf_phone').value      = data.phone      || '';
-  document.getElementById('sf_email').value      = data.email      || '';
-  document.getElementById('sf_inquiry').value    = data.inquiry    || '';
+  document.getElementById('sf_your_name').value     = data.your_name     || '';
+  document.getElementById('sf_your_kana').value     = data.your_kana     || '';
+  document.getElementById('sf_company').value       = data.company       || '';
+  document.getElementById('sf_pharmacy_name').value = data.pharmacy_name || '';
+  document.getElementById('sf_position').value      = data.position      || '';
+  document.getElementById('sf_pref').value          = data.pref          || '';
+  document.getElementById('sf_tel').value           = data.tel           || '';
+  document.getElementById('sf_email').value         = data.email         || '';
+  document.getElementById('sf_message').value       = data.message       || '';
 });
 
 function submitForm() {
   localStorage.removeItem('formData');
-  // ここにAccountEngagementの送信処理を追加予定
-  alert('送信しました');
+  document.getElementById('aeForm').submit();
 }
 
 function goBack() {
-  // URLパラメータ ?back=true で「修正して戻ってきた」と伝える
   window.location.href = 'AEtest.html?back=true';
 }
 </script>
