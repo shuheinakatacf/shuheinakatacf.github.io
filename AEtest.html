@@ -17,17 +17,17 @@
 
 <div class="wrapper">
 
-  <form id="contactForm">
+  <form id="contactForm" action="http://go.pardot.com/l/1123063/2026-04-21/24xmn41" method="post">
 
     <div class="form-group">
       <label>お名前</label>
-      <input id="name" name="name" maxlength="80" type="text"
+      <input id="your_name" name="your_name" maxlength="80" type="text"
              placeholder="お名前を全角でご記入ください">
     </div>
 
     <div class="form-group">
       <label>フリガナ</label>
-      <input id="00NH300000AJdOn" name="00NH300000AJdOn" maxlength="255" type="text"
+      <input id="your_kana" name="your_kana" maxlength="255" type="text"
              placeholder="お名前を全角カタカナでご記入ください">
     </div>
 
@@ -39,19 +39,19 @@
 
     <div class="form-group">
       <label>薬局名</label>
-      <input id="00NH300000AJdOt" name="00NH300000AJdOt" maxlength="255" type="text"
+      <input id="pharmacy_name" name="pharmacy_name" maxlength="255" type="text"
              placeholder="薬局名をご記入ください">
     </div>
 
     <div class="form-group">
       <label>役職名</label>
-      <input id="title" name="title" maxlength="40" type="text"
+      <input id="position" name="position" maxlength="40" type="text"
              placeholder="役職名をご記入ください">
     </div>
 
     <div class="form-group">
       <label>都道府県</label>
-      <select id="state" name="state">
+      <select id="pref" name="pref">
         <option value="">選択してください</option>
         <option value="北海道">北海道</option>
         <option value="青森県">青森県</option>
@@ -105,7 +105,7 @@
 
     <div class="form-group">
       <label>電話番号</label>
-      <input id="phone" name="phone" maxlength="40" type="text"
+      <input id="tel" name="tel" maxlength="40" type="text"
              placeholder="電話番号をハイフンなし、半角でご記入ください">
     </div>
 
@@ -117,7 +117,7 @@
 
     <div class="form-group">
       <label>お問い合わせ内容</label>
-      <textarea id="00NH300000AJdOl" name="00NH300000AJdOl" rows="5"
+      <textarea id="message" name="message" rows="5"
                 placeholder="お問い合わせ内容をご記入ください"></textarea>
     </div>
 
@@ -131,15 +131,15 @@
 <script>
 function goToConfirm() {
   const data = {
-    name: document.getElementById('name').value,
-    furigana: document.getElementById('00NH300000AJdOn').value,
-    company: document.getElementById('company').value,
-    pharmacy: document.getElementById('00NH300000AJdOt').value,
-    title: document.getElementById('title').value,
-    state: document.getElementById('state').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    inquiry: document.getElementById('00NH300000AJdOl').value
+    your_name:     document.getElementById('your_name').value,
+    your_kana:     document.getElementById('your_kana').value,
+    company:       document.getElementById('company').value,
+    pharmacy_name: document.getElementById('pharmacy_name').value,
+    position:      document.getElementById('position').value,
+    pref:          document.getElementById('pref').value,
+    tel:           document.getElementById('tel').value,
+    email:         document.getElementById('email').value,
+    message:       document.getElementById('message').value
   };
   localStorage.setItem('formData', JSON.stringify(data));
   window.location.href = 'AEconfirm.html';
@@ -152,15 +152,15 @@ window.addEventListener('DOMContentLoaded', function() {
     const saved = localStorage.getItem('formData');
     if (saved) {
       const data = JSON.parse(saved);
-      document.getElementById('name').value           = data.name      || '';
-      document.getElementById('00NH300000AJdOn').value = data.furigana   || '';
-      document.getElementById('company').value         = data.company    || '';
-      document.getElementById('00NH300000AJdOt').value = data.pharmacy   || '';
-      document.getElementById('title').value           = data.title      || '';
-      document.getElementById('state').value           = data.state      || '';
-      document.getElementById('phone').value           = data.phone      || '';
-      document.getElementById('email').value           = data.email      || '';
-      document.getElementById('00NH300000AJdOl').value = data.inquiry    || '';
+      document.getElementById('your_name').value     = data.your_name     || '';
+      document.getElementById('your_kana').value     = data.your_kana     || '';
+      document.getElementById('company').value       = data.company       || '';
+      document.getElementById('pharmacy_name').value = data.pharmacy_name || '';
+      document.getElementById('position').value      = data.position      || '';
+      document.getElementById('pref').value          = data.pref          || '';
+      document.getElementById('tel').value           = data.tel           || '';
+      document.getElementById('email').value         = data.email         || '';
+      document.getElementById('message').value       = data.message       || '';
     }
   } else {
     // 直接アクセスの場合はlocalStorageをクリアして空フォームを表示
